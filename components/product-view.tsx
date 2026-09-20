@@ -44,10 +44,9 @@ export function ProductView({ slug }: { slug: string }) {
   }, [product?.id, product?.variants]);
 
   const gallery = useMemo(() => {
-    if (!product) return [] as string[];
-    const context = CATEGORY_META.find((c) => c.slug === product.category)?.image;
-    return (context ? [...product.images, context] : product.images).map((src) => imgSrc(src));
-  }, [product]);
+  if (!product) return [] as string[];
+  return product.images.map((src) => imgSrc(src));
+}, [product]);
 
   const related = useMemo(() => {
     if (!product) return [];
